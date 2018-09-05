@@ -1,0 +1,18 @@
+{
+    "general": {
+        "interval": 30
+    },
+    "slack": {
+        "webhookUri": ""
+    },
+    "zerto": [
+        {
+            "label": "",
+            "address": "",
+            "port": 9669,
+            "username" : "",
+            "password" : "",
+            "token": ""
+        }
+    ]
+}

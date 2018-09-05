@@ -1,0 +1,12 @@
+[Unit]
+Description=Zerto alert notification service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/zerto-notify/server.js
+Restart=always
+User=nodejs
+Group=nodejs
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/opt/zerto-notify

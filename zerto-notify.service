@@ -3,7 +3,7 @@ Description=Zerto alert notification service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/node /opt/zerto-notify/server.js
+ExecStart=/usr/bin/node /opt/zerto-notify/server.js --config-file /opt/zerto-notify/config.json
 Restart=always
 User=nodejs
 Group=nodejs

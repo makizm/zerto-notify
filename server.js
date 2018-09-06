@@ -27,7 +27,8 @@ const config = require(ARGS['config-file']);
 // 1. Store ZVM login securely
 // 2. Better cache management vs. just a variable
 // 3. Notify of service start/stop
-// 4. Be able to handle connectivity loss to ZVM/Slack
+// 4. Be able to handle connectivity loss to ZVM/Slack without crashing
+// 5. Save cache to disk to prevent messages being resend on service restart
 
 /**
  * General

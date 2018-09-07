@@ -30,17 +30,21 @@ server.js does not need execute flag since it's not being run directly but via N
 
 ## Config file
 
-> general
->> interval: number of seconds between alert checks
-> slack
->> webhookUri: URI of Slack app webhook
-> zerto: array of Zerto ZVM server connection settings
->> [] label: text label for this server instance used in logs and notifications
->> [] address: IP address or hostname
->> [] port: connection port, default is 9669
->> [] username: login username
->> [] password: login password
->> [] token: auth token (place holder for the future)
+> <b>general</b>
+>> <b>interval:</b> number of seconds between alert checks
+>
+> <b>slack</b>
+>> <b>webhookUri:</b> URI of Slack app webhook
+>
+> <b>zerto</b>
+>> [<br />
+>> &nbsp;&nbsp; <b>label:</b> text label for this server instance used in logs and notifications<br />
+>> &nbsp;&nbsp; <b>address:</b> IP address or hostname<br />
+>> &nbsp;&nbsp; <b>port:</b> connection port, default is 9669<br />
+>> &nbsp;&nbsp; <b>username:</b> login username<br />
+>> &nbsp;&nbsp; <b>password:</b> login password<br />
+>> &nbsp;&nbsp; <b>token:</b> auth token (place holder for the future) <br />
+>> ]
 
 #### Config xample:
 ```json

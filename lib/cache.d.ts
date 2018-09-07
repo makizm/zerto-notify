@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Message, Zvm, Alert } from '../model';
 
 export class Cache {
-    constructor()
+    constructor(zvms: Zvm[]);
 
     // Process new alert
     processNewAlerts(zvm: Zvm, newAlerts: Alert[]): void;

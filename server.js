@@ -41,9 +41,9 @@ const CHECK_INTERVAL = config.general.interval;
 const SLACK_HOOK_URL = config.slack.webhookUri;
 
 // Zerto
-const ZERTO = Zvm.fromConfig(config);
+const ZVMS = Zvm.fromConfig(config);
 
-debug(ZERTO);
+debug(ZVMS);
 
 const HOSTNAME = os.hostname();
 
@@ -77,11 +77,11 @@ function validate() {
     // Send test alert to validate Slack configuration
     SlackSendTest((success) => {
         if(success) {
-            if(ZERTO.length <= 0) {
+            if(ZVMS.length <= 0) {
                 throw new Error("At least one Zerto ZVM server must be provided in config file");
             }
 
-            ZERTO.forEach(zvm => {
+            ZVMS.forEach(zvm => {
                 logger.info("Testing access to Zerto ZVM " + zvm.label);
 
                 ZertoLogin(zvm, (token, msg) => {
@@ -100,7 +100,7 @@ function validate() {
 
 // main wrapper function
 function run() {
-    let cache = new Cache();
+    let cache = new Cache(ZVMS);
 
     // Trust no one!
     // Send test alert to validate Slack configuration
@@ -116,13 +116,13 @@ function run() {
     })
 
     // Attempt to login on first run
-    async.forEachOf(ZERTO, (zvm, id, callback) => {
+    async.forEachOf(ZVMS, (zvm, id, callback) => {
         debug(zvm);
 
         ZertoLogin(zvm, (token, msg) => {
             if(token) {
                 // save token value
-                ZERTO[id]["token"] = token;
+                ZVMS[id]["token"] = token;
             } else {
                 logger.error("Authentication to Zerto ZVM " + zvm.label + " failed " + msg);
             }
@@ -136,7 +136,7 @@ function run() {
         logger.info("Starting infinite loop to check Zerto api for alerts every " + CHECK_INTERVAL + " seconds");
 
         let run = setInterval(() => {
-            async.forEachOf(ZERTO, (zvm, id, callback) => {
+            async.forEachOf(ZVMS, (zvm, id, callback) => {
 
                 let zLabel = zvm.label;
 

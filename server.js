@@ -246,6 +246,8 @@ function SlackSendAlert(message) {
 
     let ops = new ReqOptions(url, "POST");
 
+    let alertText = "New alert on " + zLabel;
+    let alertId = alert.Link.identifier;
     let color = "";
 
     switch (alert.Level) {
@@ -260,6 +262,7 @@ function SlackSendAlert(message) {
         case "Removed":
             // red
             color = "#00f195";
+            alertText = "Alert cleared";
             break;
         default:
             // blue
@@ -267,8 +270,7 @@ function SlackSendAlert(message) {
             break;
     }
 
-    let alertText = "New alert on " + zLabel;
-    let alertId = alert.Link.identifier;
+
 
     // formating for dismissed alerts
     if(alert.IsDismissed == true) {

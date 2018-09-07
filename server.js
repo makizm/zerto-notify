@@ -291,9 +291,9 @@ function SlackSendAlert(message) {
                 "fallback": alertText,
                 "color": color,
                 "title": alertText,
-                "text": alert["Description"],
+                "text": alert.Description,
                 "footer": HOSTNAME,
-                "ts": timeStamp.getUnixTime(),
+                "ts": "Triggered on " + timeStamp.getUnixTime(),
                 "fields": [
                     {
                         "title": "Entity",
@@ -313,7 +313,7 @@ function SlackSendAlert(message) {
     // Send request to Slack
     Request(ops, (data, msg, _) => {
         if(msg.code == 200) {
-            logger.info("Alert sent successfully " + alertId)
+            logger.info("Alert sent successfully " + alertId);
         } else {
             debug("Failed to send alert %s %o", alertId, msg);
         } 

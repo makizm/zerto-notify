@@ -283,7 +283,7 @@ function SlackSendAlert(message) {
     let ts = "";
     ts = alert.TurnedOn;
     let timeStamp = new Date(parseInt(ts.slice(6, ts.length - 2)));
-    let unixTs = timeStamp.getUnixTime();
+    let unixTs = timeStamp.getUnixTime() || null;
 
     // Slack message
     ops.data = { 
@@ -294,7 +294,7 @@ function SlackSendAlert(message) {
                 "title": `${alertText} on ${zLabel}`,
                 "text": alert.Description,
                 "footer": HOSTNAME,
-                "ts": `Triggered ${unixTs}`,
+                "ts": unixTs,
                 "fields": [
                     {
                         "title": "Entity",

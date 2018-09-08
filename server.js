@@ -246,7 +246,7 @@ function SlackSendAlert(message) {
 
     let ops = new ReqOptions(url, "POST");
 
-    let alertText = "New alert on " + zLabel;
+    let alertText = "New alert";
     let alertId = alert.Link.identifier;
     let color = "";
 
@@ -289,9 +289,9 @@ function SlackSendAlert(message) {
     ops.data = { 
         "attachments": [
             {
-                "fallback": alertText,
+                "fallback": `${alertText} on ${zLabel}`,
                 "color": color,
-                "title": alertText,
+                "title": `${alertText} on ${zLabel}`,
                 "text": alert.Description,
                 "footer": HOSTNAME,
                 "ts": `Triggered ${unixTs}`,
